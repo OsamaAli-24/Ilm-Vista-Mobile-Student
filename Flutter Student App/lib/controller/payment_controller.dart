@@ -71,9 +71,7 @@ class PaymentController extends GetxController implements GetxService {
     final appConfig = Get.find<SplashController>().configModel.data!.appConfig.defaultCurrency;
 
     return URLRequest(
-        url: Uri.parse(
-          "${Config.baseUrl}user/make-payment?currency_code=$appConfig",
-        ),
+        url: Uri.parse("${Config.baseUrl}user/make-payment?currency_code=$appConfig"),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           AppConstants.localizationKey: AppConstants.languages[0].languageCode!,

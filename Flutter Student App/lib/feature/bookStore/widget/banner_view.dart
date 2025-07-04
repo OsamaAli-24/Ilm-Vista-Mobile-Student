@@ -7,7 +7,7 @@ import 'package:lms_user_app/controller/theme_controller.dart';
 import 'package:lms_user_app/core/helper/responsive_helper.dart';
 import 'package:lms_user_app/utils/dimensions.dart';
 import 'package:lms_user_app/utils/images.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lms_user_app/data/model/book_store_model/slider.dart'
     as book_slider;
@@ -112,9 +112,9 @@ class BannerView extends StatelessWidget {
                           ),
                         ],
                       )
-                    : Shimmer(
-                        duration: const Duration(seconds: 2),
-                        enabled: true,
+                    : Shimmer.fromColors(
+                        baseColor: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 300]!,
+                        highlightColor: Colors.grey[Get.find<ThemeController>().darkTheme ? 500 : 100]!,
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: Dimensions.paddingSizeSmall),

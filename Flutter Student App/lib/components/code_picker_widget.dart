@@ -1,6 +1,7 @@
-import 'package:country_code_picker/country_code.dart';
-import 'package:country_code_picker/country_codes.dart';
-import 'package:country_code_picker/selection_dialog.dart';
+// import 'package:country_code_picker/country_code.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+// import 'package:country_code_picker/country_codes.dart';
+// import 'package:country_code_picker/selection_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -287,6 +288,10 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
                 hideSearch: widget.hideSearch!,
                 closeIcon: widget.closeIcon,
                 flagDecoration: widget.flagDecoration,
+                hideHeaderText: false,
+                headerAlignment: MainAxisAlignment.start,
+                headerTextStyle: widget.textStyle ?? Theme.of(context).textTheme.labelLarge ?? const TextStyle(),
+                topBarPadding: const EdgeInsets.all(8.0),
               ),
             ),
           ),

@@ -16,7 +16,8 @@ class AuthController extends GetxController implements GetxService {
 
   AuthController({required this.authRepo});
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  late FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isLoading = false;
   bool? _acceptTerms = false;
   bool get isLoading => _isLoading;
@@ -47,9 +48,11 @@ class AuthController extends GetxController implements GetxService {
   var confirmNewPasswordController = TextEditingController();
 
   ///TextEditingController for change pass screen
-  final currentPasswordControllerForChangePasswordScreen = TextEditingController();
+  final currentPasswordControllerForChangePasswordScreen =
+      TextEditingController();
   final newPasswordControllerForChangePasswordScreen = TextEditingController();
-  final confirmPasswordControllerForChangePasswordScreen = TextEditingController();
+  final confirmPasswordControllerForChangePasswordScreen =
+      TextEditingController();
 
   ///form validation key
 
@@ -146,7 +149,8 @@ class AuthController extends GetxController implements GetxService {
       }
       customSnackBar(response.body['message'], isError: false);
     } else {
-      customSnackBar(response?.body['data']['email'][0].toString(), isError: true);
+      customSnackBar(response?.body['data']['email'][0].toString(),
+          isError: true);
     }
     _isLoading = false;
     update();
@@ -202,7 +206,8 @@ class AuthController extends GetxController implements GetxService {
     _hideKeyboard();
     _isLoading = true;
     update();
-    Response? response = await authRepo.forgetPasswordOTP(emailController.value.text);
+    Response? response =
+        await authRepo.forgetPasswordOTP(emailController.value.text);
     if (response!.body['success'] == true) {
       customSnackBar(response.body['message'], isError: false);
       Get.toNamed(RouteHelper.forgotPasswordOTPVerificationScreen,
@@ -243,8 +248,10 @@ class AuthController extends GetxController implements GetxService {
     _hideKeyboard();
     _isLoading = true;
     update();
-    String password = currentPasswordControllerForChangePasswordScreen.value.text;
-    String confirmPassword = confirmPasswordControllerForChangePasswordScreen.value.text;
+    String password =
+        currentPasswordControllerForChangePasswordScreen.value.text;
+    String confirmPassword =
+        confirmPasswordControllerForChangePasswordScreen.value.text;
     String otp = verificationCode;
     String email = emailController.value.text;
     printLog("$password, $confirmPassword, $otp, $email");
@@ -260,7 +267,6 @@ class AuthController extends GetxController implements GetxService {
       emailController.clear();
       customSnackBar(response.body['message'], isError: false);
       Get.offAllNamed(RouteHelper.getSignInRoute(RouteHelper.changePassword));
-
     } else {
       if (response!.statusCode == 422) {
         customSnackBar(response.body['data']['password'][0].toString());

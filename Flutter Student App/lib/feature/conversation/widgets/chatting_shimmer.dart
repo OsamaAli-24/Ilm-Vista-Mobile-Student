@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms_user_app/utils/dimensions.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ChattingShimmer extends StatelessWidget {
   const ChattingShimmer({Key? key}) : super(key: key);
@@ -11,12 +12,21 @@ class ChattingShimmer extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Shimmer(
-          duration: const Duration(seconds: 3),
-          interval: const Duration(seconds: 5),
-          color: Theme.of(context).colorScheme.background,
-          colorOpacity: 0,
+          // duration: const Duration(seconds: 3),
+          // interval: const Duration(seconds: 5),
+          // color: Theme.of(context).colorScheme.background,
+          // colorOpacity: 0,
           enabled: true,
-          direction: const ShimmerDirection.fromLTRB(),
+          direction: ShimmerDirection.ltr,
+          gradient: LinearGradient(
+            colors: [
+              Colors.grey.shade300,
+              Colors.grey.shade100,
+              Colors.grey.shade300,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           child: SizedBox(
             height:Get.height*0.80,
             child: SingleChildScrollView(

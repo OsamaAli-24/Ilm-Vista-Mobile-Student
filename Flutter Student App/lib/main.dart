@@ -2,12 +2,14 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lms_user_app/core/helper/notification_helper.dart';
+import 'package:lms_user_app/firebase_options.dart';
 import 'package:lms_user_app/utils/app_constants.dart';
 import 'package:lms_user_app/utils/messages.dart';
 import 'controller/localization_controller.dart';
@@ -27,7 +29,17 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    if (kDebugMode) {
+      print('✅ Firebase initialized');
+    }
+  } catch (e) {
+    print('❌ Firebase init error: $e');
+  }
   Map<String, Map<String, String>> languages = await di.init();
   String? bookingID;
   try {
@@ -54,7 +66,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();

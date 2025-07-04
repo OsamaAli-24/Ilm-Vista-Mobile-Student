@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lms_user_app/utils/dimensions.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:shimmer_animation/shimmer_animation.dart';
 
 class InboxShimmer extends StatelessWidget {
   const InboxShimmer({super.key});
@@ -14,11 +15,20 @@ class InboxShimmer extends StatelessWidget {
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       itemBuilder: (context, index) {
         return Shimmer(
-          duration: const Duration(seconds: 3),
-          interval: const Duration(seconds: 5),
-          color: Theme.of(context).colorScheme.background,
-          colorOpacity: 0,
+          // duration: const Duration(seconds: 3),
+          // interval: const Duration(seconds: 5),
+          // color: Theme.of(context).colorScheme.background,
+          // colorOpacity: 0,
           enabled: true,
+          gradient: LinearGradient(
+            colors: [
+              Colors.grey.shade300,
+              Colors.grey.shade100,
+              Colors.grey.shade300,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           child: Padding(
             padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
             child: Row(children: [

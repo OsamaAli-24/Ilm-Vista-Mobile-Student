@@ -8,9 +8,11 @@ import 'package:lms_user_app/core/helper/responsive_helper.dart';
 import 'package:lms_user_app/core/helper/route_helper.dart';
 import 'package:lms_user_app/utils/dimensions.dart';
 import 'package:lms_user_app/utils/images.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:lms_user_app/data/model/home_data_model/slider.dart' as home_slider;
+import 'package:lms_user_app/data/model/home_data_model/slider.dart'
+    as home_slider;
 import 'package:url_launcher/url_launcher.dart';
 
 class BannerView extends StatelessWidget {
@@ -50,7 +52,11 @@ class BannerView extends StatelessWidget {
                                   bannerController.setCurrentIndex(index, true);
                                 },
                               ),
-                              items:  bannerController.homeModel!.data![bannerIndex].sliders!.map((e) => sliderItem(context, e, bannerController)).toList(),
+                              items: bannerController
+                                  .homeModel!.data![bannerIndex].sliders!
+                                  .map((e) =>
+                                      sliderItem(context, e, bannerController))
+                                  .toList(),
                             ),
                           ),
                           const SizedBox(height: Dimensions.paddingSizeSmall),
@@ -59,7 +65,8 @@ class BannerView extends StatelessWidget {
                             child: AnimatedSmoothIndicator(
                               activeIndex: bannerController.currentIndex!,
                               //activeIndex: 0,
-                              count: bannerController.homeModel!.data![bannerIndex].sliders?.length ??
+                              count: bannerController.homeModel!
+                                      .data![bannerIndex].sliders?.length ??
                                   0,
                               effect: ExpandingDotsEffect(
                                 dotHeight: 5,
@@ -79,8 +86,17 @@ class BannerView extends StatelessWidget {
                         ],
                       )
                     : Shimmer(
-                        duration: const Duration(seconds: 2),
+                        // duration: const Duration(seconds: 2),
                         enabled: true,
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.grey.shade300,
+                            Colors.grey.shade100,
+                            Colors.grey.shade300,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: Dimensions.paddingSizeSmall),
@@ -103,12 +119,10 @@ class BannerView extends StatelessWidget {
       HomeController bannerController) {
     return InkWell(
       onTap: () {
-        if(sliders.type != "course"){
-          _launchUrl(Uri.parse( sliders.url.toString()));
-
-        }else{
-          Get.toNamed(
-              RouteHelper.getCourseDetailsScreenRoute(),
+        if (sliders.type != "course") {
+          _launchUrl(Uri.parse(sliders.url.toString()));
+        } else {
+          Get.toNamed(RouteHelper.getCourseDetailsScreenRoute(),
               arguments: sliders.courseBookId);
         }
       },
@@ -127,9 +141,7 @@ class BannerView extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                 child: CustomImage(
-                  image:
-                      sliders.image ??
-                          "",
+                  image: sliders.image ?? "",
                   fit: BoxFit.cover,
                   placeholder: Images.placeholder,
                 ),
@@ -140,11 +152,12 @@ class BannerView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: Dimensions.paddingSizeSmall,),
+                  SizedBox(
+                    height: Dimensions.paddingSizeSmall,
+                  ),
                 ],
               ),
             ),
-
           ],
         ),
       ),

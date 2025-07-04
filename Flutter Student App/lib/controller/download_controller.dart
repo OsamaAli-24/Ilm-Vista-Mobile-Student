@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
-import 'package:android_path_provider/android_path_provider.dart';
+// import 'package:android_path_provider/android_path_provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -52,7 +52,8 @@ class DownloaderController extends GetxController implements GetxService {
     String? externalStorageDirPath;
     if (Platform.isAndroid) {
       try {
-        externalStorageDirPath = await AndroidPathProvider.downloadsPath;
+        // externalStorageDirPath = await AndroidPathProvider.downloadsPath;
+        externalStorageDirPath = (await getExternalStorageDirectory())?.path;
       } catch (err) {
         final directory = await getExternalStorageDirectory();
         externalStorageDirPath = directory?.path;

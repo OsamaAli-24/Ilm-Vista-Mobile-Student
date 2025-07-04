@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  late StreamSubscription<List<ConnectivityResult>> _onConnectivityChanged;
 
   @override
   void initState() {
@@ -28,10 +28,11 @@ class SplashScreenState extends State<SplashScreen> {
     bool firstTime = true;
     _onConnectivityChanged = Connectivity()
         .onConnectivityChanged
-        .listen((ConnectivityResult result) {
+        .listen((List<ConnectivityResult> results) {
       if (!firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi &&
-            result != ConnectivityResult.mobile;
+        // Check if none of the results are wifi or mobile
+        bool isNotConnected = !results.contains(ConnectivityResult.wifi) &&
+            !results.contains(ConnectivityResult.mobile);
         isNotConnected
             ? const SizedBox()
             : ScaffoldMessenger.of(context).hideCurrentSnackBar();

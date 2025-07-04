@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms_user_app/components/rating_bar.dart';
 import 'package:lms_user_app/utils/dimensions.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:shimmer_animation/shimmer_animation.dart';
 
 class CourseShimmer extends StatelessWidget {
   final bool? isEnabled;
@@ -20,8 +21,17 @@ class CourseShimmer extends StatelessWidget {
         color: Colors.grey[Get.isDarkMode ? 700 : 300],
       ),
       child: Shimmer(
-        duration: const Duration(seconds: 2),
+        // duration: const Duration(seconds: 2),
         enabled: isEnabled!,
+        gradient: LinearGradient(
+          colors: [
+            Colors.grey.shade300,
+            Colors.grey.shade100,
+            Colors.grey.shade300,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
