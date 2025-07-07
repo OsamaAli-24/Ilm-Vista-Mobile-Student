@@ -19,6 +19,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: CustomAppBar(
         isBackButtonExist: fromPage == "fromSplash" || fromPage == "onboard" ? false : true,
         bgColor: Theme.of(context).cardColor,

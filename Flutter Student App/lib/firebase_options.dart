@@ -50,21 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDmVszzsmym0u4ujrwU4eL0s2ZIkqNcoeQ',
-    appId: '1:643270209299:android:eb759b3bf99d16a18474e6',
-    messagingSenderId: '643270209299',
-    projectId: 'faculty-lms',
-    storageBucket: 'faculty-lms.appspot.com',
+    apiKey: 'AIzaSyCNhOqJ5IGLnkB2o1eU4g2of8eVQ56WSrM',
+    appId: '1:522641360850:android:1b46b07967dd0b917aea0b',
+    messagingSenderId: '522641360850',
+    projectId: 'ilmvista-student',
+    storageBucket: 'ilmvista-student.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBQjPa5dlGpt6EFgeuOgRzaBSelkdEft4c',
-    appId: '1:643270209299:ios:76b83c232278bb828474e6',
-    messagingSenderId: '643270209299',
-    projectId: 'faculty-lms',
-    storageBucket: 'faculty-lms.appspot.com',
-    androidClientId: '643270209299-cv40ppt70i7odfvg09et4fpk90b34ub2.apps.googleusercontent.com',
-    iosClientId: '643270209299-1dkp7dt584qqr9ut0ticgdnrb3514ico.apps.googleusercontent.com',
+    apiKey: 'AIzaSyC0d3D_YcMynti6_xbKMUAqFEUjHmVKFFs',
+    appId: '1:522641360850:ios:deda487638020a1e7aea0b',
+    messagingSenderId: '522641360850',
+    projectId: 'ilmvista-student',
+    storageBucket: 'ilmvista-student.firebasestorage.app',
     iosBundleId: 'com.spagreen.lms.user.app',
   );
+
 }
